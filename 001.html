@@ -34,25 +34,25 @@
       // me와 student는 다른 객체이기 때문에 만약 안에 내용이 같아도 같지 않다
 
       // 나에 대해 추상화 해보자
-      //   const my = {
-      //     name: '임지인',
-      //     favorite: 'blue',
-      //     toDoList: function () {
-      //       console.log('coding study');
-      //     },
-      //     result: function (student) {
-      //       student.up();
-      //     },
-      //   };
+      //     const my = {
+      //       name: '임지인',
+      //       favorite: 'blue',
+      //       toDoList: function () {
+      //         console.log('coding study');
+      //       },
+      //       result: function (student) {
+      //         student.up();
+      //       },
+      //     };
 
-      //   const myStudent = {
-      //     level: 1,
-      //     up: function () {
-      //       this.level++;
-      //     },
-      //   };
-      //   console.log(my.result(myStudent));
-      // console.log(myStudent); // 결과 - {level: 2, up: ƒ}
+      //     const myStudent = {
+      //       level: 1,
+      //       up: function () {
+      //         this.level++;
+      //       },
+      //     };
+      //     console.log(my.result(myStudent));
+      //   console.log(myStudent); // 결과 - {level: 2, up: ƒ}
 
       // 10.1.1
       // 생성자를 통해 생성된 객체는 같은 프로퍼티와 메서드를 공유할수 있기때문에 length, forEach등 같이 쓸수 있다
@@ -80,7 +80,7 @@
       result1 instanceof Factory; // false // result1는 Factory 반환일뿐 인스턴스는 아니기때문
 
       // ✅✨ 생성자 함수 앞에 new 연산자가 사용되면 함수안의 this는 생성자가 만들어낸 객체 즉, 인스턴스를 참조
-      // 즉 this가 robot를 robot2를 robot3를 ... 이런식으로 대상이 바뀌면서 가르키게 된다
+      // 즉 this가 myName를 myName2를 myName3를 ... 이런식으로 대상이 바뀌면서 가르키게 된다
       function NewFactory(name) {
         this.name = name; // this - window, NewFactory는 전역공간에 있기 때문
         this.sayYourName = function () {
