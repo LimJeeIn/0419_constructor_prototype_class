@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //10.3
+      //
+      // const obj = {
+      //     name: 'test'
+      // }
+
+      // console.log(obj.hasOwnProperty('name')); // true
+
+      // const arr = [1, 2, 3];
+
+      // console.log(arr.hasOwnProperty('name')); //false // 배열인 arr는 hasOwnProperty를 어떻게 사용 가능한가?
+
+      function Parent() {
+        this.name = '재현';
+      }
+      Parent.prototype.rename = function (name) {
+        this.name = name;
+      };
+      Parent.prototype.sayName = function () {
+        console.log(this.name);
+      };
+
+      function Child() {
+        Parent.call(this); // call -> this 대상 지정을 바꿀수 있다
+      }
+
+      Child.prototype = Object.create(Parent.prototype);
+      Child.prototype.canWalk = function () {
+        console.log('now i can walk!!');
+      };
+
+      const child = new Child();
+
+      console.log(child.name); // 재현
+      console.log(child.canWalk()); //
+      console.log(child.rename('호준')); //
+      console.log(child.name); // 호준
+      console.log(child.sayName()); // 호준
+    </script>
+  </body>
+</html>

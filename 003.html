@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //   function Jaehyun() {
+      //     this.age = 20;
+      //   }
+
+      //   Jaehyun.prototype.name = '재현';
+
+      //   const jaehyun1 = new Jaehyun();
+      //   const jaehyun2 = new Jaehyun();
+      //   const jaehyun3 = new Jaehyun();
+
+      function jeein() {
+        this.age = 20;
+      }
+
+      jeein.prototype.name = '지인'; // 함수에는 프로토타입(prototype)이라는 프로퍼티(name)가 있다
+      const jeein1 = new jeein(); // 인스턴스가 만들어져 변수에 할당됨
+      const jeein2 = new jeein();
+      const jeein3 = new jeein();
+
+      console.log(jeein1.name); //  '지인'
+      console.log(jeein1.age); // ??
+
+      jeein1.__proto__.name = 'ss';
+      // 'ss'
+      jeein2.__proto__.name;
+      //'ss';
+
+      // - 실습: 우리가 만들었던 음식 로봇객체의 메서드를 프로토타입으로 분리해보세요,
+      // 그리고 객체의 메서드가 서로 동일한 주소를 참조하는지 확인해보세요.
+
+      function food() {}
+      // - 실습2: 우리가 객체지향 개념에서 만들었던 ‘나’ 와 ‘대상’ 객체를
+      // 생성자를 통해서 만들어 볼 수 있도록 코드를 수정해봅시다.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // const me = {
+      //     name: '웨이드',
+      //     address: '제주도 제주시 인다 1길',
+      //     phoneNum: '010-8001-6536',
+      //     canWalk: function () {
+      //         console.log('웨이드가 걷는다.');
+      //     },
+      //     teaching: function (myStudent) {
+      //         myStudent.levelUp();
+      //     }
+      // }
+
+      // const student = {
+      //     level: 1,
+      //     levelUp: function () {
+      //         this.level++;
+      //     }
+      // }
+
+      // console.log(me.teaching(student));
+      // console.log(student) // 결과 {level: 2, levelUp: ƒ} // student 객체 안에 level이 1씩 증가, 객체 끼리 소통 가능하다
+      //객체와 객체가 서로 메소드를 통해 상호작용하게 만드는 것을 바로 객체지향 프로그래밍
+      // me와 student는 다른 객체이기 때문에 만약 안에 내용이 같아도 같지 않다
+
+      // 나에 대해 추상화 해보자
+      //   const my = {
+      //     name: '임지인',
+      //     favorite: 'blue',
+      //     toDoList: function () {
+      //       console.log('coding study');
+      //     },
+      //     result: function (student) {
+      //       student.up();
+      //     },
+      //   };
+
+      //   const myStudent = {
+      //     level: 1,
+      //     up: function () {
+      //       this.level++;
+      //     },
+      //   };
+      //   console.log(my.result(myStudent));
+      // console.log(myStudent); // 결과 - {level: 2, up: ƒ}
+
+      // 참고 코드
+
+      // const Hoonie = {
+      //     name: '후니',
+      //     address: '경기도 고양시 일산동구 강송로 196',
+      //     phoneNum: '010-7631-5728',
+      //     encounter: function () {
+      //         console.log('앗! 야생의 후니(이)가 나타났다!');
+      //     },
+      //     canRap: function () {
+      //         console.log('후니(이)가 랩을 한다!');
+      //     },
+      //     coding: function (myMacBook) {
+      //         myMacBook.writeCode();
+      //     },
+      // };
+
+      // const myMacBook = {
+      //     cpu: 'M1 PRO',
+      //     writeCodee: function () {
+      //         console.log('후니(은)는 코딩을 시작했다...');
+      //     },
+      // };
+
+      // const me = {
+      //     name: '박재영',
+      //     age: '이십칠',
+      //     phoneNum: '01000000000',
+      //     address: '중랑구',
+      //     lang: ['python', 'C', 'R', 'JS', 'HTML/CSS'],
+      //     major: 'statistics',
+      //     초등학교: '묵동초등학교',
+      //     중학교: '태릉중학교',
+      //     family: ['엄마', '아빠', '엄마아들', '나']
+      // }
+
+      // const nor = {
+      //     name: '노르',
+      //     isLikeLionStudent: true,
+      //     project: 1,
+      //     rank: "bronze",
+
+      //     studying: function () {
+      //         this.project++;
+      //         this.rank = this.project >= 10 ? "grand-master" : "bronze";
+      //         console.log(`현재 진행한 프로젝트: ${this.project} 현재 랭크: ${this.rank}`);
+      //     }
+      // }
+
+      // 10.1.1
+      // 생성자를 통해 생성된 객체는 같은 프로퍼티와 메서드를 공유할수 있기때문에 length, forEach등 같이 쓸수 있다
+      let myArr = new Array(1, 2, 3); // -> 배열은 [] 이렇게도 만들수 있고 new Array()로도 만들수 있다
+      let myArr2 = new Array(4, 5, 6);
+
+      myArr2.length;
+      myArr.length;
+
+      myArr.forEach((item) => {
+        console.log(item);
+      });
+
+      myArr2.forEach((item) => {
+        console.log(item);
+      });
+
+      // 10.1.2
+      //생성자는 결국 함수이기 때문에 함수를 만드는 것과 동일하게 시작한다
+      function Factory() {} // 일반 함수
+      let result1 = Factory(); // result1 -> undefined (Factory함수에서 아무것도 리턴하지 않아서)
+      let result2 = new Factory(); // result2 -> Factory{} 생성자를 통해 객체를 만들어낸 것 == 인스턴스(반환되어 만들어진 객체)
+
+      result2 instanceof Factory; // true
+      result1 instanceof Factory; // false // result1는 Factory 반환일뿐 인스턴스는 아니기때문
+
+      // ✅✨ 생성자 함수 앞에 new 연산자가 사용되면 함수안의 this는 생성자가 만들어낸 객체 즉, 인스턴스를 참조
+      // 즉 this가 robot를 robot2를 robot3를 ... 이런식으로 대상이 바뀌면서 가르키게 된다
+      function NewFactory(name) {
+        this.name = name; // this - window, NewFactory는 전역공간에 있기 때문
+        this.sayYourName = function () {
+          // this - window, NewFactory는 전역공간에 있기 때문
+          console.log(`삐리비리. 제 이름은 ${this.name}입니다.`);
+        };
+      }
+
+      // 1-1
+      // new 가 붙는 순간 또 다른 생성자 함수가 생성된다
+      const myName = new NewFactory('지인'); // NewFactory {name: '지인', sayYourName: ƒ} // 객체가 만들어짐
+      // robot은 NewFactory의 인스턴스이다
+      this.name; //'지인'
+      this.sayYourName();
+
+      const myName2 = new Factory('김코드');
+      myName2.name; // ??
+
+      myName.sayYourName(); // // 삐리비리. 제 이름은 지인입니다.
+
+      // 1-2
+      function NewFactory(name) {
+        this.name = name;
+        this.sayYourName = function () {
+          console.log(`삐리비리. 제 이름은 ${this.name}입니다. 주인님.`);
+        };
+      }
+
+      const robot = new NewFactory('재현');
+      const robot2 = new NewFactory('재현');
+      const robot3 = new NewFactory('재현');
+
+      robot.name;
+      // '재현';
+      robot2.name;
+      // '재현';
+
+      function Me() {
+        this.name = '웨이드';
+        this.address = '제주도 제주시 인다 1길';
+        this.phoneNum = '010-8001-6536';
+      }
+
+      Me.prototype.canWalk = function () {
+        console.log('웨이드가 걷는다.');
+      };
+      Me.prototype.teaching = function (myStudent) {
+        myStudent.levelUp();
+      };
+
+      class Me {
+        constructor() {
+          this.name = '웨이드';
+          this.address = '제주도 제주시 인다 1길';
+          this.phoneNum = '010-8001-6536';
+        }
+
+        canWalk() {
+          console.log('웨이드가 걷는다.');
+        }
+
+        teaching(myStudent) {
+          myStudent.levelUp();
+        }
+      }
+
+      // 실습 2 ??
+      console.log(me.address);
+      console.log(me.name);
+    </script>
+  </body>
+</html>
